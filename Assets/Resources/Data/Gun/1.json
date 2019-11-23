@@ -1,0 +1,10 @@
+{
+    "spritePath": "Sprite/Gun/black",
+    "shootCD": 0.8,
+    "shootDistance": 200,
+    "bulletNumber": 3,
+    "bulletDamage": 10,
+    "bulletSpeed": 150,
+    "bulletBuff": "Frozen"
+
+}

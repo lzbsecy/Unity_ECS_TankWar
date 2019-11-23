@@ -7,32 +7,34 @@ public class MapCamera : MonoBehaviour
     public GameObject player;
     public float cameraMoveSpeed;
 
-    private Vector3 vision = new Vector3(35, 25, 0);
+    public Vector3 vision = new Vector3(35, 25, 0);
     private Vector2 moveDir = new Vector2(0, 0);
-
     public Vector3 playerPos;
-
     public Vector3 cameraPos;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        cameraMoveSpeed = player.GetComponent<Player>().moveSpeed;
+        player = GameObject.Find("Game").GetComponent<Player>().player;
+        cameraMoveSpeed = player.GetComponent<TankController>().moveSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        follow();   
+    }
+
+    private void FixedUpdate()
+    {
+        if (player != null)
+        {
+            follow();
+        }
     }
 
     void follow()
     {
-        Debug.DrawLine(new Vector3(transform.position.x - vision.x / 2, transform.position.y - vision.y / 2, 0), new Vector3(transform.position.x + vision.x / 2, transform.position.y - vision.y / 2, 0));
-        Debug.DrawLine(new Vector3(transform.position.x - vision.x / 2, transform.position.y + vision.y / 2, 0), new Vector3(transform.position.x + vision.x / 2, transform.position.y + vision.y / 2, 0));
-
-        playerPos = player.transform.position;
+        playerPos = player.transform.position;   
         
         // x axis follow
         if (Mathf.Abs(playerPos.x - transform.position.x) >= vision.x / 2)

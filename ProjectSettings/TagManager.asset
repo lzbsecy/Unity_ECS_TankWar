@@ -9,6 +9,7 @@ TagManager:
   - tree
   - stone
   - brick
+  - tank
   layers:
   - Default
   - TransparentFX
