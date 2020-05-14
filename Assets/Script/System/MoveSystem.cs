@@ -10,9 +10,6 @@ public class MoveSystem : ComponentSystem
 {
     protected override void OnCreate()
     {
-        
-        
-
         base.OnCreate();
     }
 
