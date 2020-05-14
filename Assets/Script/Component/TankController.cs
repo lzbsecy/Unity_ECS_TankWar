@@ -99,7 +99,7 @@ public class TankController : MonoBehaviour
         }
         
         rigidbody.MovePosition(nextPosition);
-        //collider.enabled = true;
+        collider.enabled = true;
     }
 
     GameObject GetGun(){
