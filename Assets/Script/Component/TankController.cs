@@ -91,13 +91,15 @@ public class TankController : MonoBehaviour
 
         collider.enabled = false;
         Collider2D otherCollider =  Physics2D.OverlapBox(nextPosition, collider.size, 0);
-        collider.enabled = true;
-        if (otherCollider != null && otherCollider.tag != "tree") // hit something, cannot pass
+        //collider.enabled = true;
+
+        if (otherCollider != null && otherCollider.tag != "tree")
         {
             nextPosition = transform.position;
         }
         
         rigidbody.MovePosition(nextPosition);
+        //collider.enabled = true;
     }
 
     GameObject GetGun(){
