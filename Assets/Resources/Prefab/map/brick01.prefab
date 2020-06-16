@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6670628571512759981}
   - component: {fileID: 6670628571512759980}
   - component: {fileID: 6670628571512759983}
+  - component: {fileID: 544960682485526847}
   m_Layer: 0
   m_Name: brick01
   m_TagString: brick
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6670628571512759982}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.8822274, y: 6.910187, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -46,6 +47,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -108,3 +110,79 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 32.2111, y: 31.911467}
   m_EdgeRadius: 0
+--- !u!114 &544960682485526847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6670628571512759982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecd3927e708f83341a0994869ed904f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity:
+    gameobjectComponent:
+      enable: 1
+      gameObject: {fileID: 6670628571512759982}
+      transform: {fileID: 6670628571512759981}
+      spriteRenderer: {fileID: 6670628571512759980}
+      animator: {fileID: 0}
+      rigidbody: {fileID: 0}
+      collider: {fileID: 6670628571512759983}
+    identity:
+      enable: 1
+      camp: 0
+      isAIControl: 0
+      isDead: 0
+      tag: brick
+    inputComponent:
+      enable: 0
+      isAIControl: 0
+      tempList: []
+    moveComponent:
+      enable: 0
+      moveSpeed: 100
+      moveDirection: 0
+      needMove: 0
+    tankComponent:
+      enable: 0
+      bodywork:
+        spritePath: 
+        animTrigger: 0
+        moveSpeed: 0
+        hp: 0
+      gun: {fileID: 0}
+    gunComponent:
+      enable: 0
+      bulletPrefab: {fileID: 0}
+      shootDir: 0
+      shootCd: 0.8
+      fireOffset: 22
+      gunData:
+        spritePath: 
+        shootCD: 0
+        shootDistance: 0
+        bulletDamage: 0
+        bulletSpeed: 0
+        bulletBuff: 
+      timeCount: 0
+    aiComponent:
+      enable: 0
+      Dir: 0
+      timeCount: 0
+      lastMoveState: 
+      lastShootState: 
+      changeDirCd: 0
+      shootCD: 0
+      finishShoot: 0
+    bulletComponent:
+      enable: 0
+      damage: 0
+      shootDistance: 100
+      currentDistance: 0
+      buffName: 
+      dead: 0
+    buffComponent:
+      enable: 0

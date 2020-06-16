@@ -1,34 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class AIComponent : MonoBehaviour
+[System.Serializable]
+public class AiComponent : ComponentBase
 {
-    private List<AI> ais = new List<AI>();
-    public bool isRunning = false;
-
-    void Start()
-    {
-        foreach (var ai in ais)
-        {
-            ai.Start(this.gameObject);
-        }
-    }
-
-    void Update()
-    {
-        if (isRunning == false)
-        {
-            return ;
-        }
-        
-        foreach (var ai in ais)
-        {
-            ai.Update();
-        }
-    }
-
-    public void AddAI(AI ai){
-        ais.Add(ai);
-    }
+    public int Dir; //移动方向
+    public float timeCount; //计时
+    public string lastMoveState; //上一次移动状态
+    public string lastShootState; //上一次射击状态
+    public float changeDirCd;  //改变方向CD
+    public float shootCD;  //射击CD
+    public bool finishShoot; //记录是否触发
 }

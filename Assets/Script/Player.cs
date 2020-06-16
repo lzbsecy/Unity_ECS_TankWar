@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+class PlayerMgr : Singleton<PlayerMgr>
 {
-    public GameObject player;
+    public Entity player;
 
-    public void SetPlayer(GameObject gameObject){
+    public void SetPlayer(Entity gameObject){
         this.player = gameObject;
     }
 }

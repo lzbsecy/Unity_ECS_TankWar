@@ -2,33 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuffComponent : MonoBehaviour
+[System.Serializable]
+public class BuffComponent : ComponentBase
 {
-    private List<Buff> buffs = new List<Buff>();
-
-    void Start()
+    public List<Buff> buffs;
+    public BuffComponent()
     {
-    }
-
-    void Update()
-    {
-        foreach (var buff in buffs)
-        {
-            buff.Update();
-        }
-    }
-
-    public void AddBuff(string buffName){
-        Buff buff = NewBuff(buffName);
-        buff.Enter(this.gameObject);
-        buffs.Add(buff);
-    }
-
-    Buff NewBuff(string buffName){
-        if (buffName == "Frozen")
-        {
-            return new Frozen();
-        }
-        return null;
+        buffs = new List<Buff>();
     }
 }

@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 public class Bullet : MonoBehaviour
 {
     public float moveSpeed = 10.0f ;
@@ -17,54 +14,56 @@ public class Bullet : MonoBehaviour
     {   
         currentDistance = 0.0f;
         animator = GetComponent<Animator>();
+
+        
     }
 
     void Update()
     {
     }
     
-    private void FixedUpdate()
-    {
-        currentDistance = currentDistance + moveSpeed * Time.fixedDeltaTime;
-        AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
-        if(dead == false)
-        {
-            move();
-        }
+    //private void FixedUpdate()
+    //{
+    //    currentDistance = currentDistance + moveSpeed * Time.fixedDeltaTime;
+    //    AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
+    //    if(dead == false)
+    //    {
+    //        Move();
+    //    }
 
-        if (currentDistance > shootDistance  || info.normalizedTime >= 1.0f)
-        {
-            Destroy(gameObject);
-        }
-    }
+    //    if (currentDistance > shootDistance  || info.normalizedTime >= 1.0f)
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
     
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.gameObject.tag == "brick" || other.gameObject.tag == "stone")
-        {
-            dead = true;
-            if (other.gameObject.tag == "brick")
-            {
-                Destroy(other.gameObject);
-            }
-        }
-        else if(other.gameObject != this.masterObj && other.gameObject.GetComponent<TankController>() != null)
-        {
-            dead = true;
-            other.gameObject.GetComponent<Life>().ChangeHP(-this.damage);
-            other.gameObject.GetComponent<BuffComponent>().AddBuff(buffName);
-            Debug.Log(" collide with other tank ");
-        }
+    //private void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    if(other.gameObject.tag == "brick" || other.gameObject.tag == "stone")
+    //    {
+    //        dead = true;
+    //        if (other.gameObject.tag == "brick")
+    //        {
+    //            Destroy(other.gameObject);
+    //        }
+    //    }
+    //    else if(other.gameObject != this.masterObj && other.gameObject.GetComponent<TankComponent>() != null)
+    //    {
+    //        dead = true;
+    //        other.gameObject.GetComponent<Life>().ChangeHP(-this.damage);
+    //        other.gameObject.GetComponent<BuffComponent>().AddBuff(buffName);
+    //        Debug.Log(" collide with other tank ");
+    //    }
 
-        if (dead == true)
-        {
-            animator.SetBool("destroy", true);
-            GetComponent<BoxCollider2D>().enabled = false; // disable collider to avoid mutiple times collision.
-        }
-    }
+    //    if (dead == true)
+    //    {
+    //        animator.SetBool("destroy", true);
+    //        GetComponent<BoxCollider2D>().enabled = false; // disable collider to avoid mutiple times collision.
+    //    }
+    //}
 
-    void move()
-    {
-        transform.Translate(transform.up * moveSpeed * Time.deltaTime, Space.World);
-    }
+    //void Move()
+    //{
+    //    transform.Translate(transform.up * moveSpeed * Time.deltaTime, Space.World);
+    //}
 }

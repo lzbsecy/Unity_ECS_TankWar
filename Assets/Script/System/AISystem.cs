@@ -1,18 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class AISystem : MonoBehaviour
+public class AISystem : SystemBase
 {
-    // Start is called before the first frame update
-    void Start()
+    public AISystem(GameWorld world) : base(world)
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update(Identity identity, AiComponent aicompont, InputComponent input)
     {
+        if(aicompont == null || aicompont.enable == false)
+        {
+            return;
+        }
+
+        if(identity.isAIControl == true)
+        {
+            MoveAI.moveAI(aicompont, input);
+            ShootAI.shootAI(aicompont, input);
+        }
         
     }
 }

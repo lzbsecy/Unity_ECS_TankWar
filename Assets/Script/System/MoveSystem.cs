@@ -1,27 +1,42 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.Entities;
-using Unity.Mathematics;
-using Unity.Transforms;
 using System;
 
-public class MoveSystem : ComponentSystem
+public class MoveSystem : SystemBase
 {
-    protected override void OnCreate()
+    public MoveSystem(GameWorld world) : base(world)
     {
-        base.OnCreate();
+
     }
 
-    protected override void OnUpdate()
+    public void Update(MoveComponent move, GameobjectComponent gameobjectComponent)
     {
-
-        Entities.ForEach((ref MoveSpeed moveSpeed, ref Translation translation ) =>
+        if(move == null || move.enable == false)
         {
-            var deltaTime = Time.DeltaTime;
-            translation.Value.x += moveSpeed.moveSpeed * deltaTime;
-        });
-    }
+            return;
+        }
+        Transform transform = gameobjectComponent.transform;
+        BoxCollider2D collider = gameobjectComponent.collider;
+        if (move.needMove == true)
+        {
+            Vector3 nextPosition = transform.position + transform.up * move.moveSpeed * Time.fixedDeltaTime;
+            if (move.collisionDetection == true)
+            {
+                collider.enabled = false;
+                Collider2D otherCollider = Physics2D.OverlapBox(nextPosition, collider.size, 0);
+                if (otherCollider != null && !otherCollider.tag.Equals("tree"))
+                {
+                    nextPosition = transform.position;
+                }
+            }
+            transform.position = nextPosition;
+            
+            if(collider.enabled == false)
+            {
+                collider.enabled = true;
+            }
 
-    
+        }
+    }    
 }
